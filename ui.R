@@ -1,6 +1,5 @@
 library(shiny)
 library(rCharts)
-
 qbDVOA <- read.csv('qbDVOA.csv')
 qbDVOA$player <- as.character(qbDVOA$player)
 
@@ -14,6 +13,7 @@ shinyUI(pageWithSidebar(
 #     id = "leftPanel",
 #                
     
+    # Select/Deselect All radio buttons
     radioButtons("Select", label="Select or Deselect All Players (resets to Passing DVOA %)", 
                  choices = list("Select All" = 1, "Deselect All" = 2),
                  selected = 1),
@@ -21,11 +21,14 @@ shinyUI(pageWithSidebar(
     # Checkbox with qb player names
     checkboxGroupInput("checkGroup", label = "Player",
                         choices = sort(qbDVOA$player), selected=sort(qbDVOA$player)),
-        
+    
+    # Add links for FO article and code    
     br(),
     a(href = "http://www.footballoutsiders.com/stat-analysis/2014/nfls-best-playoff-quarterbacks-dvoa-and-dyar",
-      "Football Outsiders Article with the Data"),
+      "Football Outsiders Article with the Data"),    
+    a(href = "https://github.com/savvastj/qb_shiny", "Code"),
     
+    # Set width for side panel
     width = 3
   ),
   
