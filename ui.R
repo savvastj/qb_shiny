@@ -25,7 +25,8 @@ shinyUI(pageWithSidebar(
     # Add links for FO article and code    
     br(),
     a(href = "http://www.footballoutsiders.com/stat-analysis/2014/nfls-best-playoff-quarterbacks-dvoa-and-dyar",
-      "Football Outsiders Article with the Data"),    
+      "Football Outsiders Article with the Data"),  
+    br(),
     a(href = "https://github.com/savvastj/qb_shiny", "Code"),
     
     # Set width for side panel
