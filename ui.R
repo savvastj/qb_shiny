@@ -1,7 +1,6 @@
 library(shiny)
 library(rCharts)
-qbDVOA <- read.csv('qbDVOA.csv')
-qbDVOA$player <- as.character(qbDVOA$player)
+qbDVOA <- read.csv('qbDVOA.csv', stringsAsFactors=F)
 
 shinyUI(pageWithSidebar(
   
@@ -19,7 +18,7 @@ shinyUI(pageWithSidebar(
                  selected = 1),
 
     # Checkbox with qb player names
-    checkboxGroupInput("checkGroup", label = "Player",
+    checkboxGroupInput("checkGroup", label = "Player (resets to Passing DVOA %)",
                         choices = sort(qbDVOA$player), selected=sort(qbDVOA$player)),
     
     # Add links for FO article and code    

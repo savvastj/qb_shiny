@@ -1,9 +1,7 @@
 library(shiny)
 library(rCharts)
 library(dplyr)
-qbDVOA <- read.csv('qbDVOA.csv')
-qbDVOA$player <- as.character(qbDVOA$player)
-
+qbDVOA <- read.csv('qbDVOA.csv', stringsAsFactors=F)
 
 shinyServer(function(input, output, session){
   
@@ -19,14 +17,20 @@ shinyServer(function(input, output, session){
     if (input$Select == 2) {
       updateCheckboxGroupInput(session=session,inputId="checkGroup",
                                choices=sort(qbDVOA$player), selected=NULL)
-    } 
-    
+    }     
   })
   
   output$h1 <- renderChart2({
+    
+    # Get subset of data from selected players
     qbData <- qbDVOA[qbDVOA$player %in% input$checkGroup, ]
+    # Order data by name in abc order
     qbData <- arrange(qbData, player)
+    
+    # Initiate plotting environment
     h1 <- Highcharts$new()
+    
+    # Start making the graph
     h1$chart(type = 'bar', width = 700, height = 875, zoomType = 'x',
              resetZoomButton = list(position = list(y = -75)), marginTop = 135,
              spacingTop = 0, spacingLeft = -5)
